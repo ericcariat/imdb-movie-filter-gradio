@@ -1,3 +1,9 @@
+---
+title: IMDB_GRADIO_FILTER
+app_file: app.py
+sdk: gradio
+sdk_version: 6.15.2
+---
 # IMDb Explorer
 
 A small, fun experiment to learn and test **[Gradio](https://www.gradio.app/)**: an
@@ -72,4 +78,9 @@ Then open **http://127.0.0.1:7860** in your browser.
 - **`Released_Year` isn't always numeric.**
 - **`Genre` is multi-valued** (`"Action, Crime, Drama"`)
 ---
+
+## Live Demo
+
+Try the app online on Hugging Face Spaces:
+**https://huggingface.co/spaces/erkced/IMDB_GRADIO_FILTER**
 
