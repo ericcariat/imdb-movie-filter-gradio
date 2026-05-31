@@ -1,16 +1,28 @@
-# Read database
+"""Loads the IMDb CSV into a raw DataFrame.
+Reads only the useful columns; a sample mode speeds up testing."""
+
 import pandas as pd
 
-def read_database(file_path):
-    """
-    Reads a CSV file and returns a pandas DataFrame.
+# Columns actually used by the app
+COLONNES_UTILES = [
+    "Series_Title",
+    "Released_Year",
+    "Genre",
+    "IMDB_Rating",
+    "Director",
+]
 
-    Args:
-        file_path (str): The path to the CSV file.
+# Dev switch: load a small sample instead of the full dataset
+MODE_ECHANTILLON = False
+TAILLE_ECHANTILLON = 50
 
-    Returns:
-        pd.DataFrame: A pandas DataFrame containing the data from the CSV file.
-    """
-    return pd.read_csv(file_path)
 
-    
+def read_database(file_path: str, colonnes: list[str] | None = None) -> pd.DataFrame:
+    """Read the CSV and return a raw (uncleaned) DataFrame."""
+    if colonnes is None:
+        colonnes = COLONNES_UTILES
+
+    # None means read every row, otherwise stop at N rows
+    nrows = TAILLE_ECHANTILLON if MODE_ECHANTILLON else None
+
+    return pd.read_csv(file_path, usecols=colonnes, nrows=nrows)
